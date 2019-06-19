@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <title>Image Gallery</title>
+    <!-- the w3 style sheet is only used for the fading animation-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .container
+        {
+            /* define width and height of container div */
+            width: 50vw;
+            height: 25vw;
+            margin: auto;
+        }
+        .slideImage
+        {
+            /* image will fill up 100% of container div */
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    </style>
+    <script>
+        // this only works if images are named 0.jpg, 1.jpg 2.jpg etc.
+        // you can make this work with other image names by using an array
+        // of strings and stepping through it with the whichImage counter ex. imageArray[whichImage]
+        window.onload = function()
+        {
+            whichImage = 0;
+            // loads first image without waiting for first interval iteration
+            document.querySelector(".slideImage").style.backgroundImage = "url('images/"+whichImage+".jpg')";
+            // increments counter for next image
+            whichImage++;
+            window.setInterval(function()
+            {
+                document.querySelector(".slideImage").style.backgroundImage = "url('images/"+whichImage+".jpg')";
+                whichImage++;
+                // makes sure the script doesn't try to load an image that isnt there
+                if (whichImage == 3)
+                {
+                    whichImage = 0;
+                }
+            }, 10000);
+        }
+    </script>
+</head>
+<body>
+    <!-- container for image -->
+    <p>
+        test text
+    </p>
+    <div class="container">
+        <!-- image w3 class for a fun fading animation! -->
+        <div class="slideImage w3-animate-fading"></div>
+    </div>
+    <p>
+        test text
+    </p>
+</body>
